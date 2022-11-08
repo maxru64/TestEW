@@ -1,0 +1,30 @@
+﻿@using Shop.Data.Models
+@model IEnumerable<AutoPartsStore>
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <h2>Список магазинов</h2>
+    <table>
+        <tr>
+            <th align="left"> № </th>
+            <th align="left">Название</th>
+            <th align="left">Ссылка на товары магазина</th>
+        </tr>
+        @{ foreach (var shop in Model)
+            {
+                <tr>
+                    <td align="center">@shop.Id</td>
+                    <td align="center">@shop.Name</td>
+                    <td align="center">@Html.ActionLink("Details", "ListProduct", "Product", new { id = shop.Id }, null) </td>|
+                </tr>
+            }
+        }
+    </table>
+</body>
+</html>
+
