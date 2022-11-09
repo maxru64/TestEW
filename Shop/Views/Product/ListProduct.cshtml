@@ -7,22 +7,57 @@
 
 <html>
 <head>
-    <meta name="viewport" content="width=device-width" />
+    <style type="text/css">
+        .alternate_color {
+            background-color: #f5f5dc;
+        }
+
+        .color_table {
+            border: 1px solid black;
+            border-collapse: collapse;
+            margin: 0 auto;
+        }
+
+            .color_table th, .first_tr {
+                background-color: #aaddee;
+            }
+
+        .hover_color {
+            background-color: #ffff00 !important;
+        }
+
+        .click_color {
+            background-color: #90ee90 !important;
+        }
+    </style>
 </head>
 <body>
-    <table>
-                    <tr>
-                        <th align="left">№</th>
-                        <th align="left">Наименование</th>
-                    </tr>
-            @{ foreach (var shop in Model){
-                    <tr>
-                        <td align="center">@shop.Id</td>
-                        <td align="center">@shop.Description</td>
-                    </tr>
-                    }
-               }
-      </table>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js">
+    </script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".color_table tr:not(.first_tr)").hover(function () {
+                $(this).addClass("hover_color")
+            }, function () {
+                $(this).removeClass("hover_color")
+            });
+        });
+    </script>
+    <h1 align="left">Список товаров</h1>
+    <table class="color_table" align="left" width="25%">
+        <tr class="first_tr">
+            <th align="left">№</th>
+            <th align="left">Наименование</th>
+        </tr>
+        @{ foreach (var shop in Model)
+            {
+                <tr class="alternate_color">
+                    <td align="left">@shop.Id</td>
+                    <td align="left">@shop.Description</td>
+                </tr>
+            }
+        }
+    </table>
 </body>
 </html>
 
